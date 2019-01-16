@@ -16,7 +16,7 @@ let app = express();
 var mongooseOptions = {
     useNewUrlParser: true,
     user: 'mo1189_nokia',
-    pass: 'eI41jS9ekdhGqqIKSLlw',
+    pass: process.env.MO1189_NOKIA_PWD,
     promiseLibrary: global.Promise
 }
 // mongoose instance connection url connection
