@@ -3,6 +3,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Routes } from "./routes/crmRoutes";
 import * as mongoose from "mongoose";
+import { setupRedisClient } from "./middleware/RequestLifecycle";
 
 class App {
 
@@ -35,6 +36,7 @@ class App {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(setupRedisClient);
     }
 
 }
