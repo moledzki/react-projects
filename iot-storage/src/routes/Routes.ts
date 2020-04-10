@@ -17,7 +17,7 @@ export class Routes {
             .get(this.probeController.getProbes)
             .post(this.probeController.addNewProbe);
 
-            app.route('/api/:chanelName/:probeId')
+        app.route('/api/:chanelName/:probeId')
             .get(this.probeController.getProbeWithID)
             .put(this.probeController.updateProbe)
             .delete(this.probeController.deleteProbe);

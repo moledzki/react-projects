@@ -9,6 +9,16 @@
 			],
 			"label": "npm: dev",
 			"detail": "ts-node ./src/server.ts"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "npm: build",
+			"detail": "tsc"
 		}
 	]
 }
