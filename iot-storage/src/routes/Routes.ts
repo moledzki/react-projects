@@ -1,11 +1,11 @@
-// /lib/routes/crmRoutes.ts
-import { Request, Response } from "express";
+
+import { Request, Response, Application } from "express";
 import { ProbeController } from "../controllers/ProbeController";
 
 
 export class Routes {
     public probeController: ProbeController = new ProbeController();
-    public routes(app): void {
+    public routes(app: Application): void {
         app.route('/')
             .get((req: Request, res: Response) => {
                 res.status(200).send({
