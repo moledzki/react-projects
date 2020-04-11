@@ -17,7 +17,8 @@ var mongooseOptions = {
     useNewUrlParser: true,
     user: 'mo1189_nokia',
     pass: process.env.MO1189_NOKIA_PWD,
-    promiseLibrary: global.Promise
+    promiseLibrary: global.Promise,
+	useUnifiedTopology: true
 }
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
