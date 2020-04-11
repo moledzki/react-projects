@@ -6,7 +6,7 @@ export class ProbeController {
 
     public addNewProbe(req: Request, res: Response) {
         let ProbeModel=mongoose.model(req.params.chanelName, ProbeSchema);
-        let instance = new ProbeModel({"probe": req.body});
+        let instance = new ProbeModel({"probe": req.body, "epoch": Date.now()});
         instance.save((err, entity) => {
             if(err) {
                 res.send(err);

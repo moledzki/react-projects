@@ -15,7 +15,7 @@ class App {
     constructor() {
         this.app = express();
         this.config();
-        this.routePrv.routes(this.app);     
+        this.routePrv.routes(this.app);
         this.mongoSetup();
     }
 
@@ -37,7 +37,7 @@ class App {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.app.use(setupRedisClient);
+        // this.app.use(setupRedisClient);
         this.app.use(authApiKey);
     }
 
