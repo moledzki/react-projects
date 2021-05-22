@@ -1,13 +1,17 @@
 
 import { Request, Response, Application } from "express";
-// import { ProbeController } from "../controllers/ProbeController";
-import { google, oauth2_v2  } from 'googleapis';
-import {GetTokenResponse} from 'google-auth-library/build/src/auth/oauth2client'
+ import { AuthController } from "../controllers/AuthController";
+
+
 import Photos = require('googlephotos');
-const oauth2Client = new google.auth.OAuth2("487815936298-etevasfeipui82f2t73aa2lhef0rbfu5.apps.googleusercontent.com", "process.env.PHOTOS_CLIENT_SECRETS", "http://localhost:3000/oauth2entry");
+
 
 export class Routes {
+    private authController:AuthController = new AuthController();
+
     public routes(app: Application): void {
+        app.route('/oauth2entry')
+        .get(this.authController.processAuthCode);
         app.route('/')
             .get((req: Request, res: Response) => {
                 const code = req.query.code;
@@ -17,9 +21,6 @@ export class Routes {
                     });
                 } else {
                     let allAlbums=[];
-                    oauth2Client.getToken(code).then((value: GetTokenResponse)=> {
-                        value.tokens.
-                    });
                     oauth2Client.setCredentials(tokens);
                     google.
 
