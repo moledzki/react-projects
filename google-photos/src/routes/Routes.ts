@@ -29,9 +29,9 @@ export class Routes {
         let temp: { [k: string]: number } = {}
         source.forEach(album => {
             if (temp[album.name]) {
-                temp[album.name] += album.photoNumber;
+                temp[album.name] += Number(album.photoNumber);
             } else {
-                temp[album.name] = album.photoNumber;
+                temp[album.name] = Number(album.photoNumber);
             }
         });
         let merged: Array<PhotoAlbum> = [];
