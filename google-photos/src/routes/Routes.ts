@@ -16,7 +16,7 @@ export class Routes {
         photos.albums.list(50).then(albums=> {
             result.push(albums.albums);
             if(albums.nextPageToken != null) {
-                this.processAlbums(result, )
+                // this.processAlbums(result, )
             }
         })
     }
