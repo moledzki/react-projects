@@ -52,11 +52,19 @@ export class Routes {
         app.route('/login').get((req: Request, res: Response) => this.authController.login(req, res));
         app.route('/find').get((req: Request, res: Response) => {
             let googlePhotosAlbums: Array<any> = JSON.parse(fs.readFileSync("w:\\Downloads\\albums.json").toString());
-            let remotePhotoAlbumsDuplicate: Array<PhotoAlbum> = googlePhotosAlbums.map(gpa => { return <PhotoAlbum>{ name: gpa.title, photoNumber: gpa.mediaItemsCount } });
+            let remotePhotoAlbumsDuplicate: Array<PhotoAlbum> = googlePhotosAlbums.map(gpa => {
+                if (!gpa.mediaItemsCount) {
+                    gpa.mediaItemsCount = 0;
+                }
+                return <PhotoAlbum>{ name: gpa.title, photoNumber: gpa.mediaItemsCount }
+            });
             // let localPhotoAlbums:Array<PhotoAlbum> = new LocalPhotoService().getAllAlbums2('c:\\Users\\Public\\Pictures\\Aparat\\Zdjęcia\\raw');
-            let localPhotoAlbums: Array<PhotoAlbum> = new LocalPhotoService().getAllAlbums2('j:\\developed.pictures.google\\raw');
+            let localPhotoAlbumsRAW: Array<PhotoAlbum> = new LocalPhotoService().getAllAlbums2('j:\\developed.pictures.google\\raw');
+            let localPhotoAlbumsJPEG: Array<PhotoAlbum> = new LocalPhotoService().getAllAlbums2('j:\\developed.pictures.google\\jpeg');
             let localVideoAlbums: Array<PhotoAlbum> = new LocalPhotoService().getAllAlbums2('j:\\developed.pictures.google\\movies');
-            let allLocalAlbumsWithDuplicate = localPhotoAlbums.concat(localVideoAlbums);
+
+            let allLocalPhotoAlbumsWithDuplicate = localPhotoAlbumsRAW.concat(localPhotoAlbumsJPEG);
+            let allLocalAlbumsWithDuplicate = allLocalPhotoAlbumsWithDuplicate.concat(localVideoAlbums);
 
             let allLocalMerged = this.mergeDuplicates(allLocalAlbumsWithDuplicate);
             let remotePhotoAlbumsMerged = this.mergeDuplicates(remotePhotoAlbumsDuplicate);
@@ -149,8 +157,10 @@ export class Routes {
 
                     }
                     albumResult = await axios.get('https://photoslibrary.googleapis.com/v1/albums', options);
-                    console.log("New albums:" + albumResult.data.albums.length);
-                    allAlbums.push(...albumResult.data.albums);
+                    if (albumResult.data.albums) {
+                        console.log("New albums:" + albumResult.data.albums.length);
+                        allAlbums.push(...albumResult.data.albums);
+                    }
                     nextPageToken = albumResult.data.nextPageToken;
                     // console.log(nextPageToken);
                     // if(nextPageToken) {

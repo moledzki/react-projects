@@ -51,24 +51,31 @@ export class PhotosService {
         // console.log("Entering getAllAlbums");
         return this.getAlbumsFragment(nextPageToken).then(fragment => {
             // console.log("In getAllAlbums promise");
-            console.log("Retrevied albums: " + fragment.data.albums.length);
-            // console.log(fragment.nextPageToken);
-            if (fragment.data.nextPageToken) {
-                // console.log("Has next page: " + fragment.data.nextPageToken);
-                return this.getAllAlbums(fragment.data.nextPageToken).then(
-                    nextFragment => {
-                        // console.log("Next fragment: " + JSON.stringify(nextFragment));
-                        console.log("Before concat: " + fragment.data.albums.length);
-                        console.log("Appending: " + nextFragment.length);
-                        let joined = fragment.data.albums.concat(nextFragment);
-                        console.log("After appending: " + joined.length);
-                        return joined;
-                    }
-                );
+            if (fragment.data.albums) {
+                console.log("Retrevied albums: " + fragment.data.albums.length);
+                // console.log(fragment.nextPageToken);
+                if (fragment.data.nextPageToken) {
+                    // console.log("Has next page: " + fragment.data.nextPageToken);
+                    return this.getAllAlbums(fragment.data.nextPageToken).then(
+                        nextFragment => {
+                            // console.log("Next fragment: " + JSON.stringify(nextFragment));
+                            console.log("Before concat: " + fragment.data.albums.length);
+                            console.log("Appending: " + nextFragment.length);
+                            let joined = fragment.data.albums.concat(nextFragment);
+                            console.log("After appending: " + joined.length);
+                            return joined;
+                        }
+                    );
+                } else {
+                    console.log("No next pageToken")
+                    return new Promise((resolve, reject) => {
+                        resolve(fragment.data.albums);
+                    });
+                }
             } else {
-                console.log("No next pageToken")
+                console.log("Empty response!!!");
                 return new Promise((resolve, reject) => {
-                    resolve(fragment.data.albums);
+                    resolve([]);
                 });
             }
         }, (reason: any) => {
