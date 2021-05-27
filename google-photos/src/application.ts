@@ -20,6 +20,7 @@ class App {
         this.app.use(express.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(express.urlencoded({ extended: false }));
+        this.app.set('json spaces', 3);
     }
 
 }
