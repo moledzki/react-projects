@@ -1,0 +1,77 @@
+{
+  "locations": [{
+    "latitudeE7": 511123470,
+    "longitudeE7": 170082300,
+    "accuracy": 398,
+    "source": "cellid",
+    "timestamp": "2011-03-23T14:48:23.465Z"
+  }, {
+    "latitudeE7": 511125660,
+    "longitudeE7": 170037990,
+    "accuracy": 189,
+    "source": "cellid",
+    "timestamp": "2011-03-23T15:13:53.902Z"
+  }, {
+    "latitudeE7": 511125660,
+    "longitudeE7": 170037990,
+    "accuracy": 189,
+    "source": "cellid",
+    "timestamp": "2011-03-23T15:15:46.145Z"
+  }, {
+    "latitudeE7": 511123470,
+    "longitudeE7": 170082300,
+    "accuracy": 398,
+    "source": "wifi",
+    "timestamp": "2011-03-23T15:28:24.782Z"
+  }, {
+    "latitudeE7": 511123920,
+    "longitudeE7": 170161380,
+    "accuracy": 259,
+    "source": "cellid",
+    "timestamp": "2011-03-23T15:43:36.311Z"
+  }, {
+    "latitudeE7": 511123740,
+    "longitudeE7": 170092160,
+    "accuracy": 414,
+    "source": "wifi",
+    "timestamp": "2011-03-23T16:25:27.713Z"
+  },{
+    "latitudeE7": 511265016,
+    "longitudeE7": 170460601,
+    "accuracy": 18,
+    "altitude": 158,
+    "verticalAccuracy": 20,
+    "source": "WIFI",
+    "deviceTag": 1139162106,
+    "platformType": "ANDROID",
+    "activeWifiScan": {
+      "accessPoints": [{
+        "mac": "53557214086629",
+        "strength": -60,
+        "frequencyMhz": 2412
+      }, {
+        "mac": "277302813644624",
+        "strength": -72,
+        "frequencyMhz": 2437
+      }, {
+        "mac": "4681958647272",
+        "strength": -77,
+        "frequencyMhz": 2437
+      }, {
+        "mac": "5334177936608",
+        "strength": -89,
+        "frequencyMhz": 2442
+      }, {
+        "mac": "119163521875372",
+        "strength": -90,
+        "frequencyMhz": 2452
+      }]
+    },
+    "osLevel": 30,
+    "serverTimestamp": "2022-09-10T18:04:44.797Z",
+    "deviceTimestamp": "2022-09-10T18:04:44.256Z",
+    "batteryCharging": false,
+    "formFactor": "PHONE",
+    "timestamp": "2022-09-10T17:28:17.390Z"
+  }]
+}
